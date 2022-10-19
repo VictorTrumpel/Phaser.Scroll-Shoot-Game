@@ -1,39 +1,26 @@
-import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
-
-class MyGame extends Phaser.Scene
-{
-    constructor ()
-    {
-        super();
-    }
-
-    preload ()
-    {
-        this.load.image('logo', logoImg);
-    }
-      
-    create ()
-    {
-        const logo = this.add.image(400, 150, 'logo');
-      
-        this.tweens.add({
-            targets: logo,
-            y: 450,
-            duration: 2000,
-            ease: "Power2",
-            yoyo: true,
-            loop: -1
-        });
-    }
-}
+import Phaser from 'phaser'
+import { StartScene } from './scenes/StartScene'
+import { BootScene } from './scenes/BootScene'
+import { PreloadScene } from './scenes/PreloadScene'
+import { GameScene } from './scenes/GameScene'
+import { gameSettings } from './gameSettings'
 
 const config = {
-    type: Phaser.AUTO,
-    parent: 'phaser-example',
-    width: 800,
-    height: 600,
-    scene: MyGame
+  type: Phaser.AUTO,
+  parent: 'phaser-example',
+  ...gameSettings,
+  scene: [
+    BootScene, 
+    PreloadScene, 
+    StartScene, 
+    GameScene
+  ],
+  physics: {
+    default: 'arcade',
+    arcade: {
+      debug: false
+    }
+  }
 };
 
-const game = new Phaser.Game(config);
+new Phaser.Game(config);
