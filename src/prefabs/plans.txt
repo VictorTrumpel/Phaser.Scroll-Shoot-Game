@@ -1,0 +1,9 @@
+Fire & Enemy
+
+init() 
+
+setAlife()
+
+reset()
+
+move()

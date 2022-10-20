@@ -1,16 +1,34 @@
 import { gameSettings } from '../gameSettings'
 import { Enemy } from './Enemy'
+import { Fire } from './Fire'
+import { Fires } from './Fires'
 
 export class Player extends Enemy {
   constructor(scene) {
-    super(scene, 150, gameSettings.height / 2, 'dragon', 'dragon1')
-
-    this.init()
+    super({
+      scene, 
+      x: 150, 
+      y: gameSettings.height / 2, 
+      texture: 'dragon', 
+      frame: 'dragon1',
+      velocity: 500
+    })
   }
 
   init() {
-    super.init()
-    this.velocity = 500
+    super.init({ velocity: 500 })
+    this.fires = new Fires(this.scene, this)
+
+    this.timer = this.scene.time.addEvent({
+      delay: 500,
+      loop: true,
+      callback: this.fire,
+      callbackScope: this
+    })
+  }
+
+  fire() {
+    this.fires.createFire(this)
   }
 
   move() {

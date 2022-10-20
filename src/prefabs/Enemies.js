@@ -3,21 +3,21 @@ import { Enemy } from './Enemy'
 
 export class Enemies extends Physics.Arcade.Group {
   constructor(scene) {
-    super()
-    this.scene = scene
-    this.count = 10
+    super(scene.physics.worl, scene)
+
+    this.countMax = 10
+    this.countCreated = 0
+
     this.timer = this.scene.time.addEvent({
       delay: 1000,
       loop: true,
       callback: this.onTimerTick,
       callbackScope: this
     })
-
-    console.log('this.timer :>> ', this.timer)
   }
 
   onTimerTick() {
-    if (this.getLength() < this.count) {
+    if (this.countCreated < this.countMax) {
       this.createEnemy()
       return
     }
@@ -25,8 +25,16 @@ export class Enemies extends Physics.Arcade.Group {
   }
 
   createEnemy() {
-    const enemy = Enemy.generate(this.scene)
-    this.add(enemy)
+    let enemy = this.getFirstDead()
+
+    if (!enemy) {
+      enemy = Enemy.generate(this.scene)
+      this.add(enemy)
+    } else {
+      enemy.reset()
+    }
+
     enemy.move()
+    ++this.countCreated
   }
 }
