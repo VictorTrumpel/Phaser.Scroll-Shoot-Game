@@ -1,8 +1,5 @@
 import { gameSettings } from '../gameSettings'
 import { Enemy } from './Enemy'
-import { Fire } from './Fire'
-import { Fires } from './Fires'
-
 export class Player extends Enemy {
   constructor(scene) {
     super({
@@ -11,24 +8,14 @@ export class Player extends Enemy {
       y: gameSettings.height / 2, 
       texture: 'dragon', 
       frame: 'dragon1',
-      velocity: 500
+      velocity: 500,
+      bullet: {
+        delay: 500,
+        texture: 'fire',
+        velocity: -750
+      },
+      origin: { x: 1, y: 0.5 }
     })
-  }
-
-  init() {
-    super.init({ velocity: 500 })
-    this.fires = new Fires(this.scene, this)
-
-    this.timer = this.scene.time.addEvent({
-      delay: 500,
-      loop: true,
-      callback: this.fire,
-      callbackScope: this
-    })
-  }
-
-  fire() {
-    this.fires.createFire(this)
   }
 
   move() {

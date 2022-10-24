@@ -36,6 +36,14 @@ export class MovableObject extends GameObjects.Sprite {
     this.body.enable = status
     this.setVisible(status)
     this.setActive(status)
+
+    if (this.timer) {
+      this.timer.paused = !status
+    }
+
+    if (!status) {
+      this.emit('killed')
+    }
   }
 
   move() {

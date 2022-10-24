@@ -13,7 +13,7 @@ export class Fires extends Physics.Arcade.Group {
       fire = Fire.generate(this.scene, player)
       this.add(fire)
     } else {
-      fire.reset(player.x + player.width / 2, player.y)
+      fire.reset(player.x, player.y)
     }
 
     fire.move()

@@ -3,12 +3,13 @@ import { MovableObject } from './MovableObject'
 
 export class Fire extends MovableObject {
   static generate(scene, player) {
+    const { bullet } = player
     return new Fire({
       scene, 
-      x: player.x + player.width / 2, 
+      x: player.x, 
       y: player.y, 
-      texture: 'fire',
-      velocity: -750
+      texture: bullet.texture,
+      velocity: bullet.velocity,
     })
   } 
 

@@ -1,9 +1,12 @@
 import { Physics } from 'phaser'
 import { Enemy } from './Enemy'
+import { Fires } from './Fires'
 
 export class Enemies extends Physics.Arcade.Group {
   constructor(scene) {
     super(scene.physics.worl, scene)
+
+    this.fires = new Fires(scene)
 
     this.countMax = 10
     this.countCreated = 0
@@ -28,7 +31,7 @@ export class Enemies extends Physics.Arcade.Group {
     let enemy = this.getFirstDead()
 
     if (!enemy) {
-      enemy = Enemy.generate(this.scene)
+      enemy = Enemy.generate(this.scene, this.fires)
       this.add(enemy)
     } else {
       enemy.reset()
