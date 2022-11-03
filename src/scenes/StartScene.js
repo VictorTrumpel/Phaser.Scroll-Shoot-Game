@@ -1,6 +1,5 @@
 import { Scene } from 'phaser'
 import { gameSettings } from '../gameSettings'
-import background from '../assets/background.png'
 
 export class StartScene extends Scene {
   constructor() {
@@ -8,6 +7,7 @@ export class StartScene extends Scene {
   }
 
   create() {    
+    console.log('StartScene loaded')
     this.createBackground()
     this.createText()
     this.initEvents()

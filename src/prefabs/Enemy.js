@@ -36,7 +36,7 @@ export class Enemy extends MovableObject {
   init(data) {
     super.init(data)
     this.setOrigin(data.origin.x, data.origin.y)
-    this.fires = data.fires || new Fires(this.scene, this)
+    this.fires = data.fires || new Fires(this.scene)
 
     this.timer = this.scene.time.addEvent({
       delay: data.bullet.delay,

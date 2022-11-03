@@ -13,15 +13,20 @@ export class Fire extends MovableObject {
     })
   } 
 
+
   isDead() {
-    const firePositionX = this.x
-    const fireWidth = this.width
-
-    const sceneWidth = gameSettings.width
-    
-    const isFireOutRightBorder = firePositionX > fireWidth + sceneWidth
-    const isFireOutLeftBorder = firePositionX < -this.width
-
-    return isFireOutLeftBorder || isFireOutRightBorder
+    return this.x < -this.width || this.x > gameSettings.width + this.width;
   }
+    
+  // isDead() {
+  //   const firePositionX = this.x
+  //   const fireWidth = this.width
+
+  //   const sceneWidth = gameSettings.width
+    
+  //   const isFireOutRightBorder = firePositionX > fireWidth + sceneWidth
+  //   const isFireOutLeftBorder = firePositionX < -this.width
+
+  //   return isFireOutLeftBorder || isFireOutRightBorder
+  // }
 }

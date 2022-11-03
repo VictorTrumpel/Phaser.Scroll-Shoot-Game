@@ -8,6 +8,7 @@ export class Enemies extends Physics.Arcade.Group {
 
     this.fires = new Fires(scene)
 
+    this.scene = scene
     this.countMax = 10
     this.countCreated = 0
 

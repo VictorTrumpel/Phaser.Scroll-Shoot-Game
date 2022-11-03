@@ -21,27 +21,9 @@ export class GameScene extends Scene {
   }
 
   addOverlap() {
-    this.physics.add.overlap(
-      this.player.fires, 
-      this.enemies, 
-      this.onOverlap,
-      null, 
-      this
-    )
-    this.physics.add.overlap(
-      this.enemies.fires,
-      this.player,
-      this.onOverlap,
-      null,
-      this
-    )
-    this.physics.add.overlap(
-      this.enemies,
-      this.player,
-      this.onOverlap,
-      null,
-      this
-    )
+    this.physics.add.overlap(this.player.fires, this.enemies, this.onOverlap, null, this)
+    this.physics.add.overlap(this.enemies.fires, this.player, this.onOverlap, null, this)
+    this.physics.add.overlap(this.player, this.enemies, this.onOverlap, null, this)
   }
 
   onOverlap(source, target) {
@@ -54,7 +36,7 @@ export class GameScene extends Scene {
   }
 
   onComplete() {
-    // this.scene.start('Start')
+    this.scene.start('Start', this)
   }
 
   update() {
