@@ -1,21 +1,21 @@
-import { Physics } from 'phaser'
+import Phaser from 'phaser'
 import { Fire } from './Fire'
 
-export class Fires extends Physics.Arcade.Group {
+export class Fires extends Phaser.Physics.Arcade.Group {
   constructor(scene) {
-    super(scene.physics.worl, scene)
+    super(scene.physics.world, scene);
   }
 
-  createFire(player) {
-    let fire = this.getFirstDead()
+  createFire(source) {
+    let fire = this.getFirstDead();
 
     if (!fire) {
-      fire = Fire.generate(this.scene, player)
-      this.add(fire)
+        fire = Fire.generate(this.scene, source);
+        this.add(fire);
     } else {
-      fire.reset(player.x, player.y)
+        fire.reset(source.x, source.y);
     }
 
-    fire.move()
+    fire.move();
   }
 }

@@ -34,15 +34,14 @@ export class Enemy extends MovableObject {
   } 
 
   init(data) {
-    super.init(data)
-    this.setOrigin(data.origin.x, data.origin.y)
-    this.fires = data.fires || new Fires(this.scene)
-
+    super.init(data);
+    this.setOrigin(data.origin.x, data.origin.y);
+    this.fires = data.fires || new Fires(this.scene);
     this.timer = this.scene.time.addEvent({
-      delay: data.bullet.delay,
-      loop: true,
-      callback: this.fire,
-      callbackScope: this
+        delay: data.bullet.delay,
+        loop: true,
+        callback: this.fire,
+        callbackScope: this
     })
 
     this.bullet = data.bullet

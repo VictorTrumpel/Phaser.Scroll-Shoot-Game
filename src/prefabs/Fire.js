@@ -2,16 +2,27 @@ import { gameSettings } from '../gameSettings'
 import { MovableObject } from './MovableObject'
 
 export class Fire extends MovableObject {
-  static generate(scene, player) {
-    const { bullet } = player
-    return new Fire({
-      scene, 
-      x: player.x, 
-      y: player.y, 
-      texture: bullet.texture,
-      velocity: bullet.velocity,
-    })
-  } 
+  // static generate(scene, player) {
+  //   const { bullet } = player
+  //   return new Fire({
+  //     scene, 
+  //     x: player.x, 
+  //     y: player.y, 
+  //     texture: bullet.texture,
+  //     velocity: bullet.velocity,
+  //   })
+  // } 
+
+  static generate(scene, source) {
+    const data = {
+        scene,
+        x: source.x,
+        y: source.y,
+        texture: source.bullet.texture,
+        velocity: source.bullet.velocity
+    };
+    return new Fire(data);
+  }
 
 
   isDead() {

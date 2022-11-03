@@ -1,10 +1,10 @@
-import { Physics } from 'phaser'
+import * as Phaser from 'phaser'
 import { Enemy } from './Enemy'
 import { Fires } from './Fires'
 
-export class Enemies extends Physics.Arcade.Group {
+export class Enemies extends Phaser.Physics.Arcade.Group {
   constructor(scene) {
-    super(scene.physics.worl, scene)
+    super(scene.physics.world, scene)
 
     this.fires = new Fires(scene)
 

@@ -51,5 +51,4 @@ export class MovableObject extends GameObjects.Sprite {
   move() {
     this.body.setVelocityX(-this.velocity)
   }
-
 }
