@@ -33,6 +33,7 @@ export class GameScene extends Scene {
 
   createCompleteEvents() {
     this.player.once('killed', this.onComplete, this)
+    this.enemies.once('enemies-killed', this.onComplete, this)
   }
 
   onComplete() {
