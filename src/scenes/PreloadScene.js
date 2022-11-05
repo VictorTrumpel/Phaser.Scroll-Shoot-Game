@@ -20,7 +20,7 @@ export class PreloadScene extends Scene {
 
   preload() {
     this.add.sprite(0, 0, 'bg').setOrigin(0)
-    const loadingBar = new LoadingBar(this)
+    new LoadingBar(this)
     this.preloadAssets()
   }
 
