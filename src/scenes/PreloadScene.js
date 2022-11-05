@@ -1,4 +1,5 @@
 import { Scene } from 'phaser'
+import { LoadingBar } from '../LoadingBar'
 
 import dragonImage from '../assets/dragon.png'
 import dragonAtlas from '../assets/dragon.json'
@@ -18,6 +19,12 @@ export class PreloadScene extends Scene {
   }
 
   preload() {
+    this.add.sprite(0, 0, 'bg').setOrigin(0)
+    const loadingBar = new LoadingBar(this)
+    this.preloadAssets()
+  }
+
+  preloadAssets() {
     this.load.image('fire', fire)
     this.load.atlas('dragon', dragonImage, dragonAtlas)
     this.load.atlas('enemy', enemyImage, enemyAtlas)
@@ -26,7 +33,6 @@ export class PreloadScene extends Scene {
   }
 
   create() {
-    console.log('preload assets done')
     this.scene.start('Start')
   }
 }
