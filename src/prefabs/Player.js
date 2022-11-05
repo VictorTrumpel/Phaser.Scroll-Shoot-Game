@@ -16,6 +16,24 @@ export class Player extends Enemy {
       },
       origin: { x: 1, y: 0.5 }
     })
+
+    const frames = this.scene.anims.generateFrameNames('dragon', {
+      prefix: 'dragon',
+      start: 1,
+      end: 6
+    })
+
+    this.scene.anims.create({
+      key: 'fly',
+      frames,
+      frameRate: 13,
+      repeat: -1
+    })
+
+    this.play('fly', true)
+
+
+    console.log('this :>> ', this)
   }
 
   move() {
