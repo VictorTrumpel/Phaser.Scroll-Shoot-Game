@@ -2,6 +2,7 @@ import { Scene } from 'phaser'
 import { gameSettings } from '../gameSettings'
 import { Player } from '../prefabs/Player'
 import { Enemies } from '../prefabs/Enemies'
+import { ScoreCounter } from '../prefabs/ScoreCounter'
 
 export class GameScene extends Scene {
   constructor() {
@@ -16,6 +17,8 @@ export class GameScene extends Scene {
     this.createBackground()
     this.player = new Player(this)
     this.enemies = new Enemies(this)
+    this.scoreCounter = new ScoreCounter(this, 25, 25)
+
     this.createCompleteEvents()
     this.addOverlap()
   }
@@ -37,7 +40,12 @@ export class GameScene extends Scene {
   }
 
   onComplete() {
-    this.scene.start('Start', this)
+    const isWin = this.player.active
+
+    this.scene.start('Start', {
+      score: this.scoreCounter.score,
+      isWin
+    })
   }
 
   update() {

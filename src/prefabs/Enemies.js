@@ -32,6 +32,8 @@ export class Enemies extends Phaser.Physics.Arcade.Group {
   onEnemyKilled() {
     this.killedEnemies += 1
 
+    this.scene.scoreCounter.update(this.killedEnemies)
+
     if (this.killedEnemies === this.countMax) {
       this.emit('enemies-killed')
     }
