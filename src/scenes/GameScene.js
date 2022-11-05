@@ -3,6 +3,7 @@ import { gameSettings } from '../gameSettings'
 import { Player } from '../prefabs/Player'
 import { Enemies } from '../prefabs/Enemies'
 import { ScoreCounter } from '../prefabs/ScoreCounter'
+import { Boom } from '../prefabs/Boom'
 
 export class GameScene extends Scene {
   constructor() {
@@ -17,6 +18,7 @@ export class GameScene extends Scene {
     this.createBackground()
     this.player = new Player(this)
     this.enemies = new Enemies(this)
+
     this.scoreCounter = new ScoreCounter(this, 25, 25)
 
     this.createCompleteEvents()

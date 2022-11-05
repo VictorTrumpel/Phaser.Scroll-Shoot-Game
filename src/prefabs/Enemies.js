@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser'
+import { Boom } from './Boom'
 import { Enemy } from './Enemy'
 import { Fires } from './Fires'
 
@@ -29,8 +30,10 @@ export class Enemies extends Phaser.Physics.Arcade.Group {
     this.timer.remove()
   }
 
-  onEnemyKilled() {
+  onEnemyKilled(killedEnemy) {
     this.killedEnemies += 1
+
+    new Boom(this.scene, killedEnemy.x, killedEnemy.y)
 
     this.scene.scoreCounter.update(this.killedEnemies)
 
@@ -44,7 +47,7 @@ export class Enemies extends Phaser.Physics.Arcade.Group {
 
     if (!enemy) {
       enemy = Enemy.generate(this.scene, this.fires)
-      enemy.on('killed', this.onEnemyKilled, this)
+      enemy.on('killed', this.onEnemyKilled.bind(this, enemy), this)
       this.add(enemy)
     } else {
       enemy.reset()

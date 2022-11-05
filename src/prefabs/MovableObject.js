@@ -33,18 +33,18 @@ export class MovableObject extends GameObjects.Sprite {
 
   setAlife(status) {
     // активировать/деактивировать физическое тело
-    this.body.enable = status;
+    this.body.enable = status
     // скрыть/показать текстуру
-    this.setVisible(status);
+    this.setVisible(status)
     // деактивировать/активироть объект
-    this.setActive(status);
+    this.setActive(status)
 
     if (this.timer) {
-      this.timer.paused = !status;
+      this.timer.paused = !status
     }
 
     if (!status) {
-      this.emit('killed');
+      this.emit('killed')
     }
   }
 

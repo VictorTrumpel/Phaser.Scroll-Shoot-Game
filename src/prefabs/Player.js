@@ -31,9 +31,6 @@ export class Player extends Enemy {
     })
 
     this.play('fly', true)
-
-
-    console.log('this :>> ', this)
   }
 
   move() {
